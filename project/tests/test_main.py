@@ -12,7 +12,6 @@ class TestMainBlueprint(BaseTestCase):
         # Ensure Flask is setup.
         response = self.client.get('/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Welcome!', response.data)
 
 
 if __name__ == '__main__':
