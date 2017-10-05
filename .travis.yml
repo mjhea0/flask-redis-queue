@@ -8,7 +8,6 @@ python:
 
 install:
   - pip install -r requirements.txt
-  - pip install coveralls
 
 script:
-  - python manage.py cov
+  - python manage.py test
