@@ -1,4 +1,4 @@
-# project/server/tests/test_config.py
+# project/server/tests/test__config.py
 
 
 import unittest
@@ -6,7 +6,9 @@ import unittest
 from flask import current_app
 from flask_testing import TestCase
 
-from project.server import app
+from project.server import create_app
+
+app = create_app()
 
 
 class TestDevelopmentConfig(TestCase):
@@ -32,18 +34,6 @@ class TestTestingConfig(TestCase):
         self.assertTrue(current_app.config['TESTING'])
         self.assertTrue(app.config['DEBUG'] is True)
         self.assertTrue(app.config['WTF_CSRF_ENABLED'] is False)
-
-
-class TestProductionConfig(TestCase):
-
-    def create_app(self):
-        app.config.from_object('project.server.config.ProductionConfig')
-        return app
-
-    def test_app_is_production(self):
-        self.assertFalse(current_app.config['TESTING'])
-        self.assertTrue(app.config['DEBUG'] is False)
-        self.assertTrue(app.config['WTF_CSRF_ENABLED'] is True)
 
 
 if __name__ == '__main__':

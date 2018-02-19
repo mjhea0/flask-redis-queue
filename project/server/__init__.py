@@ -7,18 +7,31 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 
 
-app = Flask(
-    __name__,
-    template_folder='../client/templates',
-    static_folder='../client/static'
-)
+# instantiate the extensions
+bootstrap = Bootstrap()
 
 
-app_settings = os.getenv('APP_SETTINGS', 'project.server.config.DevelopmentConfig')
-app.config.from_object(app_settings)
+def create_app(script_info=None):
 
-bootstrap = Bootstrap(app)
+    # instantiate the app
+    app = Flask(
+        __name__,
+        template_folder='../client/templates',
+        static_folder='../client/static'
+    )
 
+    # set config
+    app_settings = os.getenv('APP_SETTINGS')
+    app.config.from_object(app_settings)
 
-from project.server.main.views import main_blueprint
-app.register_blueprint(main_blueprint)
+    # set up extensions
+    bootstrap.init_app(app)
+
+    # register blueprints
+    from project.server.main.views import main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    # shell context for flask cli
+    app.shell_context_processor({'app': app})
+
+    return app

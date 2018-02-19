@@ -15,8 +15,8 @@ $('.btn').on('click', function() {
   })
   .fail((err) => {
     console.log(err)
-  })
-})
+  });
+});
 
 function getStatus(taskID) {
   $.ajax({
@@ -30,7 +30,7 @@ function getStatus(taskID) {
         <td>${res.data.task_status}</td>
         <td>${res.data.task_result}</td>
       </tr>`
-    $('#tasks').prepend(html)
+    $('#tasks').prepend(html);
     const taskStatus = res.data.task_status;
     if (taskStatus === 'finished' || taskStatus === 'failed') return false;
     setTimeout(function() {
@@ -39,6 +39,5 @@ function getStatus(taskID) {
   })
   .fail((err) => {
     console.log(err)
-  })
+  });
 }
-
