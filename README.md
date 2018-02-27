@@ -11,3 +11,7 @@ $ docker-compose up -d
 ```
 
 Open your browser to http://localhost:5001 view the app or to http://localhost:9181 to view the RQ dashboard. 
+
+### Want to learn how to build this? 
+
+Check out the [post](https://testdriven.io/asynchronous-tasks-with-flask-and-redis-queue).
