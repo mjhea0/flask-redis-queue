@@ -1,4 +1,5 @@
-FROM python:3.6.1
+# base image
+FROM python:3.6.4-alpine
 
 # set working directory
 RUN mkdir -p /usr/src/app
