@@ -10,7 +10,7 @@ Spin up the containers:
 $ docker-compose up -d
 ```
 
-Open your browser to http://localhost:5001 view the app or to http://localhost:9181 to view the RQ dashboard. 
+Open your browser to http://localhost:5001 to view the app or to http://localhost:9181 to view the RQ dashboard. 
 
 ### Want to learn how to build this? 
 
