@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.7'
 
 services:
 
@@ -7,7 +7,7 @@ services:
     image: web
     container_name: web
     ports:
-      - '5001:5000'
+      - '5004:5000'
     command: python manage.py run -h 0.0.0.0
     volumes:
       - .:/usr/src/app
@@ -28,7 +28,7 @@ services:
       - redis
 
   redis:
-    image: redis:3.2.11
+    image: redis:4.0.11-alpine
 
   dashboard:
     build: ./project/dashboard
