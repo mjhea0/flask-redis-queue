@@ -10,4 +10,4 @@ Spin up the containers:
 $ docker-compose up -d
 ```
 
-Open your browser to http://localhost:5001
+Open your browser to http://localhost:5004
