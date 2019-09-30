@@ -7,7 +7,7 @@ Example of how to handle background processes with Flask, Redis Queue, and Docke
 Spin up the containers:
 
 ```sh
-$ docker-compose up -d
+$ docker-compose up -d --build
 ```
 
 Open your browser to http://localhost:5004 to view the app or to http://localhost:9181 to view the RQ dashboard. 
