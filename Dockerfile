@@ -1,5 +1,5 @@
 # base image
-FROM python:3.7.0-alpine
+FROM python:3.8.0-alpine
 
 # set working directory
 RUN mkdir -p /usr/src/app
@@ -10,3 +10,6 @@ ADD ./requirements.txt /usr/src/app/requirements.txt
 
 # install requirements
 RUN pip install -r requirements.txt
+
+# copy project
+COPY . /usr/src/app

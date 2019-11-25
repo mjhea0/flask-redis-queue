@@ -1,4 +1,4 @@
-# project/server/tests/base.py
+# project/tests/base.py
 
 
 from flask_testing import TestCase
@@ -9,9 +9,8 @@ app = create_app()
 
 
 class BaseTestCase(TestCase):
-
     def create_app(self):
-        app.config.from_object('project.server.config.TestingConfig')
+        app.config.from_object("project.server.config.TestingConfig")
         return app
 
     def setUp(self):
