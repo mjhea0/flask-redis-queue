@@ -7,7 +7,7 @@ services:
     image: web
     container_name: web
     ports:
-      - '5004:5000'
+      - 5004:5000
     command: python manage.py run -h 0.0.0.0
     volumes:
       - .:/usr/src/app
@@ -28,12 +28,14 @@ services:
       - redis
 
   redis:
-    image: redis:4.0.11-alpine
+    image: redis:5.0.7-alpine
 
   dashboard:
     build: ./project/dashboard
     image: dashboard
     container_name: dashboard
     ports:
-      - '9181:9181'
+      - 9181:9181
     command: rq-dashboard -H redis
+    depends_on:
+      - redis
