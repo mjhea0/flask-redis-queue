@@ -2,5 +2,5 @@ Flask==1.1.2
 Flask-Bootstrap==3.3.7.1
 Flask-Testing==0.8.1
 Flask-WTF==0.14.3
-redis==3.3.11
-rq==1.1.0
+redis==3.5.3
+rq==1.7.0

@@ -28,7 +28,7 @@ services:
       - redis
 
   redis:
-    image: redis:5.0.7-alpine
+    image: redis:6-alpine
 
   dashboard:
     build: ./project/dashboard
