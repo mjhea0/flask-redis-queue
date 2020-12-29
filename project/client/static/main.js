@@ -11,10 +11,10 @@ $('.btn').on('click', function() {
     method: 'POST'
   })
   .done((res) => {
-    getStatus(res.data.task_id)
+    getStatus(res.data.task_id);
   })
   .fail((err) => {
-    console.log(err)
+    console.log(err);
   });
 });
 
@@ -38,6 +38,6 @@ function getStatus(taskID) {
     }, 1000);
   })
   .fail((err) => {
-    console.log(err)
+    console.log(err);
   });
 }
