@@ -4,10 +4,7 @@
 import os
 
 from flask import Flask
-from flask_bootstrap import Bootstrap
-
-# instantiate the extensions
-bootstrap = Bootstrap()
+from flask_bootstrap import Bootstrap4
 
 
 def create_app(script_info=None):
@@ -24,7 +21,7 @@ def create_app(script_info=None):
     app.config.from_object(app_settings)
 
     # set up extensions
-    bootstrap.init_app(app)
+    Bootstrap4(app)
 
     # register blueprints
     from project.server.main.views import main_blueprint
