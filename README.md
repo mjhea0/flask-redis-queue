@@ -1,4 +1,4 @@
-# Flask Redis Queue
+# Demo flask redis dockerized templates
 
 Example of how to handle background processes with Flask, Redis Queue, and Docker
 
@@ -7,11 +7,73 @@ Example of how to handle background processes with Flask, Redis Queue, and Docke
 Spin up the containers:
 
 ```sh
-$ docker-compose up -d --build
+$ docker-compose up --build -V --scale worker=4
 ```
 
-Open your browser to http://localhost:5004 to view the app or to http://localhost:9181 to view the RQ dashboard.
+Spin up the containers in background:
 
-### Want to learn how to build this?
+```sh
+$ docker-compose up -d --build -V --scale worker=4
+```
 
-Check out the [post](https://testdriven.io/asynchronous-tasks-with-flask-and-redis-queue).
+
+Stop all containers and workers:
+
+```sh
+$ docker-compose down -v
+```
+
+Open your browser to http://localhost:5004
+
+
+Show logs from worker containers:
+```sh
+docker-compose logs --tail=0 -f master
+docker-compose logs --tail=0 -f worker
+```
+
+You can view a list of all the allocated volumes in your system with
+```sh
+docker volume ls
+```
+
+If you prefer a more automatic cleanup, the following command will remove any unused images or volumes, and any stopped containers that are still in the system.
+```sh
+docker system prune --volumes
+```
+
+## Some important docker commands:
+Below command will remove the following:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+```sh
+docker system prune
+```
+Below command will remove the following:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+```sh
+docker system prune --all --force
+```
+Below command will remove all docker images:
+```sh
+docker rmi --force $(docker images --all --quiet)
+```
+
+# Contribution
+
+## Pre-commit
+Following command will help to remove trailing-whitespace, check case conflict, check added large files,
+check merge conflict by using isort, black and flake8 automation tools.
+```sh
+python3 pre-commit-2.15.0.pyz run  -a
+```
+
+## Delete __pycache__ files
+```sh
+find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+```

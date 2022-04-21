@@ -9,7 +9,6 @@ from rq import Connection, Worker
 
 from project.server import create_app
 
-
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
 

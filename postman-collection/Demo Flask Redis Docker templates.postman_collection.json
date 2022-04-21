@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "cfca7be3-2ed5-4bb2-882c-2820ca1fa850",
+		"name": "Demo Flask Redis Docker templates",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST sync",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"job_id\", jsonData.data.job_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "delay",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "file1",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "file2",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": "http://localhost:5004/sync/jobs"
+			},
+			"response": []
+		},
+		{
+			"name": "POST async",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"job_id\", jsonData.data.job_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "webhook_endpoint",
+							"value": "http://52.172.224.181:5000",
+							"type": "text"
+						},
+						{
+							"key": "delay",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "file1",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "file2",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": "http://localhost:5004/async/jobs"
+			},
+			"response": []
+		},
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5004/jobs/{{job_id}}"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "job_id",
+			"value": ""
+		}
+	]
+}

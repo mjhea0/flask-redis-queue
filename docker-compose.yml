@@ -2,33 +2,41 @@ version: '3.8'
 
 services:
 
-  web:
+  master:
     build: .
-    image: web
-    container_name: web
+    image: master
+    container_name: master
     ports:
       - 5004:5000
-    command: python manage.py run -h 0.0.0.0
     volumes:
-      - .:/usr/src/app
+      - app-volume:/usr/src/app
+    # volumes:
+    #   - .:/usr/src/app
     environment:
       - FLASK_DEBUG=1
       - APP_SETTINGS=project.server.config.DevelopmentConfig
+      - REDIS_URL=redis://redis:6379/0
     depends_on:
       - redis
 
   worker:
-    image: web
-    command: python manage.py run_worker
+    image: master
+    command: python3 -u manage.py run_worker
     volumes:
-      - .:/usr/src/app
+      - app-volume:/usr/src/app
+    # volumes:
+    #   - .:/usr/src/app
     environment:
       - APP_SETTINGS=project.server.config.DevelopmentConfig
+      - REDIS_URL=redis://redis:6379/0
     depends_on:
       - redis
+      - master
 
   redis:
-    image: redis:6-alpine
+    image: redis:6.2-alpine
+    ports:
+      - 6379:6379
 
   dashboard:
     build: ./project/dashboard
@@ -39,3 +47,17 @@ services:
     command: rq-dashboard -H redis
     depends_on:
       - redis
+
+  webhook:
+    build: ./webhook
+    image: webhook
+    container_name: webhook
+    ports:
+      - 8888:8888
+    environment:
+      - APP_SETTINGS=project.server.config.DevelopmentConfig
+      - WEBHOOK_ENDPOINT=http://webhook:8888
+
+volumes:
+  app-volume:
+    name: app-volume-001
