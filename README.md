@@ -25,6 +25,7 @@ $ docker-compose down -v
 
 Open your browser to http://localhost:5004
 
+Open redis dashboard in http://localhost:9181/
 
 Show logs from worker containers:
 ```sh
