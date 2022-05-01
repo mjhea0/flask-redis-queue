@@ -78,3 +78,6 @@ python3 pre-commit-2.15.0.pyz run  -a
 ```sh
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
+
+## Upgrade
+This architecture has been upgraded in [this](https://github.com/vhiwase/react_native-python_flask-sql-nignx-with-authentication-boilerplate) repo.
