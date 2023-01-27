@@ -14,3 +14,18 @@ services:
     environment:
       - FLASK_DEBUG=1
       - APP_SETTINGS=project.server.config.DevelopmentConfig
+    depends_on:
+      - redis
+
+  worker:
+    image: web
+    command: python manage.py run_worker
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - APP_SETTINGS=project.server.config.DevelopmentConfig
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6.2-alpine

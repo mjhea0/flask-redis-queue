@@ -2,3 +2,5 @@ Bootstrap-Flask==2.0.0
 Flask==2.0.2
 Flask-Testing==0.8.1
 Flask-WTF==1.0.0
+redis==4.1.1
+rq==1.10.1
