@@ -31,11 +31,11 @@ services:
     image: redis:6.2-alpine
 
   dashboard:
-    build: ./project/dashboard
-    image: dashboard
-    container_name: dashboard
+    image: pranavgupta1234/rqmonitor
+    container_name: rqmonitor
+    environment: 
+      - RQ_MONITOR_REDIS_URL=redis://redis:6379/0
     ports:
-      - 9181:9181
-    command: rq-dashboard -H redis
+      - 8899:8899
     depends_on:
       - redis
